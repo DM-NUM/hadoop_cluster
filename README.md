@@ -1,3 +1,5 @@
+wait_for_it.sh脚本是直接引用了大神的脚本，大神项目地址是：https://github.com/vishnubob/wait-for-it.git；自己就偷懒了，其实在这项目中也可以不使用这个脚本，但是保险起见，还是使用了。
+
 项目启动：
 - ./start.sh build 构建镜像
 - ./start.sh run 启动集群，hadoop0（master），hadoop1， hadoop2，hadoop3；【初次启动hadoop需要格式化，将docker-compose中hadoop0容器的command改成master-format】
