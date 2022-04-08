@@ -1,0 +1,20 @@
+<configuration>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+    <property>
+        <name>mapreduce.application.classpath</name>
+        <value>
+            /usr/local/app/hadoop-3.2.3/etc/hadoop,
+            /usr/local/app/hadoop-3.2.3/share/hadoop/common/*,
+            /usr/local/app/hadoop-3.2.3/share/hadoop/common/lib/*,
+            /usr/local/app/hadoop-3.2.3/share/hadoop/hdfs/*,
+            /usr/local/app/hadoop-3.2.3/share/hadoop/hdfs/lib/*,
+            /usr/local/app/hadoop-3.2.3/share/hadoop/mapreduce/*,
+            /usr/local/app/hadoop-3.2.3/share/hadoop/mapreduce/lib/*,
+            /usr/local/app/hadoop-3.2.3/share/hadoop/yarn/*,
+            /usr/local/app/hadoop-3.2.3/share/hadoop/yarn/lib/*
+        </value>
+    </property>
+</configuration>

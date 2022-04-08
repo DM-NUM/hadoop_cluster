@@ -1,0 +1,89 @@
+#!/bin/bash
+version: '3.9'
+services:
+  master-container:
+    image: test_spark
+    container_name: hadoop0
+    hostname: hadoop0
+    entrypoint: /usr/local/app/entrypoint.sh
+    command: master
+    networks:
+      customnetwork:
+        ipv4_address: 172.18.0.2
+    ports:
+      - "2222:22"
+      - 8088:8088
+      - 9864:9864
+      - 8080:8080
+      - 9870:9870
+    privileged: true
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/usr/local/app
+      - ~/hadoop/:/home/hadoop3
+    depends_on:
+      - hadoop1-container
+      - hadoop2-container
+      - hadoop3-container
+
+  hadoop1-container:
+    image: test_spark
+    container_name: hadoop1
+    hostname: hadoop1
+    entrypoint: /usr/local/app/entrypoint.sh hadoop1
+    networks:
+      customnetwork:
+        ipv4_address: 172.18.0.3
+    privileged: true
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/usr/local/app
+#      - ~/hadoop/:/home/hadoop3
+
+  hadoop2-container:
+    image: test_spark
+    container_name: hadoop2
+    hostname: hadoop2
+    entrypoint: /usr/local/app/entrypoint.sh hadoop2
+    networks:
+      customnetwork:
+        ipv4_address: 172.18.0.4
+    privileged: true
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/usr/local/app
+#      - ~/hadoop/:/home/hadoop3
+
+  hadoop3-container:
+    image: test_spark
+    container_name: hadoop3
+    hostname: hadoop3
+    entrypoint: /usr/local/app/entrypoint.sh hadoop3
+    networks:
+      customnetwork:
+        ipv4_address: 172.18.0.5
+    privileged: true
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/usr/local/app
+#      - ~/hadoop/:/home/hadoop3
+
+networks:
+  customnetwork:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.18.0.0/24"
+#          gateway: 172.18.0.1
+#networks:
+#  default:
+#    external:
+#      name: customnetwork
+#  customnetwork:
+#    external: true
+
+
