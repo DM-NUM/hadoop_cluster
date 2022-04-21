@@ -1,0 +1,31 @@
+<configuration>
+    <property>
+	<name>javax.jdo.option.ConnectionURL</name>
+	<!-- 根据自己的mysql信息更改配置 -->
+	<value>jdbc:mysql://localhost:13306/hive?createDatabaseIfNotExist=true</value>
+    	<description>JDBC connect string for a JDBC metastore</description>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionDriverName</name>
+        <value>com.mysql.cj.jdbc.Driver</value>
+        <description>Driver class name for a JDBC metastore</description>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionUserName</name>
+        <value>root</value>
+        <description>username to use against metastore database</description>
+    </property>
+    <property>
+        <name>javax.jdo.option.ConnectionPassword</name>
+        <value></value>
+        <description>password to use against metastore database</description>
+    </property>
+    <property>
+　　    <name>mapreduce.map.memory.mb</name>
+　　    <value>1536</value>
+    </property>
+    <property>
+　　    <name>mapreduce.map.java.opts</name>
+　　    <value>-Xmx1024M</value>
+    </property>
+</configuration>

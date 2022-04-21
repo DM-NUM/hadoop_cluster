@@ -4,6 +4,10 @@
         <value>yarn</value>
     </property>
     <property>
+    	<name>mapreduce.tasktracker.http.threads</name>
+	<value>10</value>
+    </property>
+    <property>
         <name>mapreduce.application.classpath</name>
         <value>
             /usr/local/app/hadoop-3.2.3/etc/hadoop,

@@ -1,6 +1,7 @@
 FROM centos
 
 ENV workdir=/usr/local/app
+# 更改yum包地址
 RUN cd /etc/yum.repos.d/ && \
   sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* && \
   sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
@@ -8,6 +9,15 @@ RUN cd /etc/yum.repos.d/ && \
 RUN yum update -y && \
   yum -y install vim net-tools wget openssh-clients openssh-server epel-release
 RUN yum -y install htop make gcc
+
+#设置时区
+ENV TZ=Asia/Shanghai \
+    DEBIAN_FRONTEND=noninteractive
+
+RUN ln -fs /usr/share/zoneinfo/${TZ} /etc/localtime \
+    && echo ${TZ} > /etc/timezone \
+    && dpkg-reconfigure --frontend noninteractive tzdata \
+    && rm -rf /var/lib/apt/lists/*
 
 WORKDIR $workdir
 ADD . $workdir

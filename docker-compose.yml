@@ -16,16 +16,21 @@ services:
       - 9864:9864
       - 8080:8080
       - 9870:9870
+      - 16010:16010
     privileged: true
     tty: true
     stdin_open: true
     volumes:
       - .:/usr/local/app
       - ~/hadoop/:/home/hadoop3
+      - ~/hbase:/home/hbase
+      - ~/hadoop0/zookeeper-3.7.0:/home/zookeeper-3.7.0
     depends_on:
       - hadoop1-container
       - hadoop2-container
       - hadoop3-container
+    links:
+      - mysql-server-container:mysql-server
 
   hadoop1-container:
     image: test_spark
@@ -40,7 +45,7 @@ services:
     stdin_open: true
     volumes:
       - .:/usr/local/app
-#      - ~/hadoop/:/home/hadoop3
+      - ~/hadoop1/zookeeper-3.7.0:/home/zookeeper-3.7.0
 
   hadoop2-container:
     image: test_spark
@@ -55,7 +60,7 @@ services:
     stdin_open: true
     volumes:
       - .:/usr/local/app
-#      - ~/hadoop/:/home/hadoop3
+      - ~/hadoop2/zookeeper-3.7.0:/home/zookeeper-3.7.0
 
   hadoop3-container:
     image: test_spark
@@ -70,7 +75,21 @@ services:
     stdin_open: true
     volumes:
       - .:/usr/local/app
-#      - ~/hadoop/:/home/hadoop3
+      - ~/hadoop3/zookeeper-3.7.0:/home/zookeeper-3.7.0
+
+  mysql-server-container:
+    image: mysql:5.6
+    container_name: mysql
+    hostname: mysql
+    networks:
+      customnetwork:
+        ipv4_address: 172.18.0.6
+    ports:
+      - 3306:3306
+    volumes:
+      - ~/mysql/5.6:/var/lib/mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
 networks:
   customnetwork:
@@ -78,12 +97,3 @@ networks:
       driver: default
       config:
         - subnet: "172.18.0.0/24"
-#          gateway: 172.18.0.1
-#networks:
-#  default:
-#    external:
-#      name: customnetwork
-#  customnetwork:
-#    external: true
-
-
