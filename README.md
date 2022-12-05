@@ -129,6 +129,7 @@ hadoop测试
 		* 看来问题指向是hbase的问题，所以hive就不要安装在hadoop机器上了
 	- 启动hive客户端后，输出了一大堆的info级别和warn级别的log
 		* 这个问题也比较棘手，网上一些人说将log日志调整为warn级别，但有人说不行，看了个比较靠谱的，就是hadoop版本比较低，不适合hive3.1.3，所以可以试试降hive版本，或者升hadoop（但是不升hadoop，好不容易搭建好哈哈哈哈。。）
+                * https://blog.csdn.net/qq_46548855/article/details/113948405
 
 - zookeeper错误
 	- 重新开机启动zookeeper错误：zookeeper ... already running as process 1203

@@ -43,6 +43,8 @@ services:
     privileged: true
     tty: true
     stdin_open: true
+    ports:
+      - "10002:10002"
     volumes:
       - .:/usr/local/app
       - ~/hadoop1/zookeeper-3.7.0:/home/zookeeper-3.7.0

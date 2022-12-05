@@ -2,8 +2,8 @@
 
 case "$1" in
 "stop")
-  hbase-daemon.sh stop master;
   hbase-daemons.sh stop regionserver;
+  hbase-daemon.sh stop master;
   bash zk.sh stop ;
   stop-all.sh;
   echo "hbase zookeeper hadoop exited..."
